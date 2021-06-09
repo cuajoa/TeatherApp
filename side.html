@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Theater App - Side Page</title>
+	<link rel="apple-touch-icon" sizes="57x57" href="IMG/icon/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="IMG/icon/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="IMG/icon/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="IMG/icon/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="IMG/icon/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="IMG/icon/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="IMG/icon/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="IMG/icon/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="IMG/icon/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="IMG/icon/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="IMG/icon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="IMG/icon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="IMG/icon/favicon-16x16.png">
+	<link rel="manifest" href="IMG/icon/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="IMG/icon/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff">
+
+    <style type="text/css">
+        body {
+            background-color: #000;
+			margin:0;
+			padding:0;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            background: transparent;
+        }
+    </style>
+	<script type="text/javascript">
+		var multimediaPosition=0;
+
+        addEventListener("keydown", function (e) {
+            var vid = document.getElementById("vid"),
+                rfs = vid.requestFullscreen
+                    || vid.webkitRequestFullScreen
+                    || vid.mozRequestFullScreen
+                    || vid.msRequestFullscreen
+                ;
+
+            var KeyID = e.which;
+            //alert(KeyID);
+            switch (KeyID) {
+				case 48: //numero 0 - Pausa audios
+					loadMedia(0);
+					break;
+                case 13: //enter
+                    loadMedia(getParameterByName('m'));
+                    rfs.call(vid);
+                    break;
+                case 32: //escape
+                    vid.pause();
+                    break;
+                
+				case 81: loadMedia(1); break; //Q 
+				case 87: loadMedia(2); break; //W 
+				case 69: loadMedia(3); break; //E 
+				case 82: loadMedia(4); break; //R 
+				case 84: loadMedia(5); break; //T 
+				case 89: loadMedia(6); break; //Y 
+				case 85: loadMedia(7); break; //U 
+				case 73: loadMedia(8); break; //I 
+				case 79: loadMedia(9); break; //O 
+				case 80: loadMedia(10); break; //P 
+				case 65: loadMedia(11); break; //A 
+				case 83: loadMedia(12); break; //S 
+				case 68: loadMedia(13); break; //D 
+				case 70: loadMedia(14); break; //F 
+				case 71: loadMedia(15); break; //G 
+				case 72: loadMedia(16); break; //H 
+				case 74: loadMedia(17); break; //J 
+				case 75: loadMedia(18); break; //K 
+				case 76: loadMedia(19); break; //L 
+				case 192: loadMedia(20); break; //Ñ 
+				case 90: loadMedia(21); break; //Z 
+				case 88: loadMedia(22); break; //X 
+				case 67: loadMedia(23); break; //C 
+				case 86: loadMedia(24); break; //V 
+				case 66: loadMedia(25); break; //B 
+				case 78: loadMedia(26); break; //N 
+				case 77: loadMedia(27); break; //M 
+                  
+                    rfs.call(vid);
+                    break;
+				case 37: //Tecla flecha atras
+					multimediaPosition--;
+					loadMedia(multimediaPosition);
+					break;
+
+				case 39: //Tecla flecha adelante
+					multimediaPosition++;
+					loadMedia(multimediaPosition);
+
+					break;
+            }
+        });
+
+        function loadMedia(key) {
+            var video = document.getElementById("vid");
+			var image = document.getElementById("img");
+			
+            var media;
+            if (key == null){
+                media = getParameterByName('m');
+				multimediaPosition=media;
+            }else
+                media = key;
+
+			image.src = 'MEDIA/' + media + '.jpg';
+			video.src = 'MEDIA/' + media + '.mp4';
+			video.play();
+        }
+
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, '\\$&');
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+
+		function imageOnError(img){
+			img.style.display = "none";
+			
+			var video = document.getElementById('vid'); 
+			video.style.display = "block";
+			video.play();
+		}
+
+		function videoOnError(video){
+			video.style.display = "none";
+			
+			var image = document.getElementById("img");
+			image.style.display = "block";
+			image.src = 'MEDIA/' + media + '.jpg';
+		}
+
+        document.addEventListener('ended', function (e) {
+            loadMedia(0);
+        }, true);
+    </script>
+</head>
+
+<body onload="loadMedia();">
+    <img id="img" onerror="imageOnError(this);" />
+    <video id="vid" autoplay onerror="videoOnError(this)">
+        <source src="" type="video/mp4">
+    </video>
+</body>
+</html>

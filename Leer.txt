@@ -1,0 +1,17 @@
+:::::: MULTIMEDIA::::::
+
+Imágenes y videos del 1 al 27 en orden.
+Se cargarán en las miniaturas.
+
+La imágen o video 0 se carga por defecto en la pantalla side y cada vez que termina un video.
+La pantalla side debe ponerse en FullScreen.
+
+El 0 pausa todo video y vuelve al video o imagen por defecto.
+
+:::::: MUSICA ::::::
+Del 1 al 8 se puede cargar la música que se desee.
+En el 9 se carga la música de sala.
+El 0 pausa toda música que se esté reproduciendo.
+
+
+:::::: FUNCIONAMIENTO ::::::

@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Theater App</title>
+    <link rel="stylesheet" href="css/style.css" />
+	<link rel="apple-touch-icon" sizes="57x57" href="IMG/icon/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="IMG/icon/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="IMG/icon/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="IMG/icon/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="IMG/icon/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="IMG/icon/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="IMG/icon/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="IMG/icon/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="IMG/icon/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="IMG/icon/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="IMG/icon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="IMG/icon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="IMG/icon/favicon-16x16.png">
+	<link rel="manifest" href="IMG/icon/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="IMG/icon/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff">
+
+    <script type="text/javascript">
+		addEventListener("keydown", function (e) {
+
+            var KeyID = e.which;
+            //alert(KeyID);
+            switch (KeyID) {
+                case 48: //numero 0 - Pausa audios
+                    stopAudio();
+                    break;
+
+                case 49: case 50: case 51: case 52: case 53: case 54: case 55: case 56: case 57:  //tecla 0 a 8 música - tecla 9 - Carga musica de sala
+                    var i = KeyID - 48;
+                    loadAudio(i);
+					break;
+
+				case 81: loadMedia(1); break; //Q 
+				case 87: loadMedia(2); break; //W 
+				case 69: loadMedia(3); break; //E 
+				case 82: loadMedia(4); break; //R 
+				case 84: loadMedia(5); break; //T 
+				case 89: loadMedia(6); break; //Y 
+				case 85: loadMedia(7); break; //U 
+				case 73: loadMedia(8); break; //I 
+				case 79: loadMedia(9); break; //O 
+				case 80: loadMedia(10); break; //P 
+				case 65: loadMedia(11); break; //A 
+				case 83: loadMedia(12); break; //S 
+				case 68: loadMedia(13); break; //D 
+				case 70: loadMedia(14); break; //F 
+				case 71: loadMedia(15); break; //G 
+				case 72: loadMedia(16); break; //H 
+				case 74: loadMedia(17); break; //J 
+				case 75: loadMedia(18); break; //K 
+				case 76: loadMedia(19); break; //L 
+				case 192: loadMedia(20); break; //Ñ
+				case 90: loadMedia(21); break; //Z 
+				case 88: loadMedia(22); break; //X 
+				case 67: loadMedia(23); break; //C 
+				case 86: loadMedia(24); break; //V 
+				case 66: loadMedia(25); break; //B 
+				case 78: loadMedia(26); break; //N 
+				case 77: loadMedia(27); break; //M 
+                    
+            }
+        });
+		
+        function loadAudio(audio) {
+            var AudioControl = document.getElementById('AudioControl');
+
+            AudioControl.src = 'MEDIA/AUDIO/' + audio + '.mp3';
+            AudioControl.load();
+            AudioControl.play();
+        }
+
+        function stopAudio() {
+            var AudioControl = document.getElementById('AudioControl');
+
+            AudioControl.pause();
+            AudioControl.currentTime = 0;
+        }
+
+
+        function loadMedia(arc) {
+			var url = 'side.html?m='+arc;
+			
+			window.open(url,'_blank');
+        }
+		
+		function imageOnError(img){
+			img.onerror=null;
+			img.src='img/null.png';
+			img.style.display = "none";
+			
+			var video = document.getElementById('vid'+img.id); 
+			video.style.display = "block";
+			video.currentTime=10;
+			video.muted = true;
+		}
+		
+		function videoOnError(video){
+			video.style.display = "none";
+		}
+    </script>
+</head>
+
+<body>
+
+    <div id="wrap">
+        
+        <div id="div1" class="float">
+            <a href="side.html?m=1" target="_blank" title="Abrir Multimedia">
+			<img id="1" src="media/1.jpg" src="media/1.jpg" onerror="imageOnError(this)" />
+			<video style="display:none;"  id="vid1">
+				<source src="media/1.mp4" type="video/mp4">
+			</video>
+            <h2>Multimedia 1 (Q)</h2></a>
+        </div>
+
+        
+        <div id="div2" class="float">
+            <a href="side.html?m=2" target="_blank" title="Abrir Multimedia">
+			<img id="2" src="media/2.jpg" onerror="imageOnError(this)" />
+			<video style="display:none;"  id="vid2" onerror="videoOnError(this)">
+				<source src="media/2.mp4" type="video/mp4">
+			</video>
+            <h2>Multimedia 2 (W)</h2></a>
+        </div>
+
+        
+        <div id="div3" class="float">
+            <a href="side.html?m=3" target="_blank" title="Abrir Multimedia">
+			<img id="3" src="media/3.jpg" onerror="imageOnError(this)" />
+			<video style="display:none;"  id="vid3">
+				<source src="media/3.mp4" type="video/mp4">
+			</video>
+            <h2>Multimedia 3 (E)</h2></a>
+        </div>
+
+        
+        <div id="div4" class="float">
+            <a href="side.html?m=4" target="_blank" title="Abrir Multimedia">
+			<img id="4" src="media/4.jpg" onerror="imageOnError(this)" />
+			<video style="display:none;"  id="vid4">
+				<source src="media/4.mp4" type="video/mp4">
+			</video>
+            <h2>Multimedia 4 (R)</h2></a>
+        </div>
+
+       
+        <div id="div5" class="float">
+            <a href="side.html?m=5" target="_blank" title="Abrir Multimedia">
+			<img id="5" src="media/5.jpg" onerror="imageOnError(this)" />
+			<video style="display:none;"  id="vid5">
+				<source src="media/5.mp4" type="video/mp4">
+			</video>
+            <h2>Multimedia 5 (T)</h2></a>
+        </div>
+
+
+        <div id="div6" class="float">
+            <a href="side.html?m=6" target="_blank" title="Abrir Multimedia">
+			<img id="6" src="media/6.jpg" onerror="imageOnError(this)" />
+			<video style="display:none;"  id="vid6">
+				<source src="media/6.mp4" type="video/mp4">
+			</video>
+            <h2>Multimedia 6 (Y)</h2></a>
+        </div>
+
+        <div id="div7" class="float">
+           <a href="side.html?m=7" target="_blank" title="Abrir Multimedia">
+		   <img id="7" src="media/7.jpg" onerror="imageOnError(this)" />
+			<video style="display:none;"  id="vid7">
+				<source src="media/7.mp4" type="video/mp4">
+			</video>
+           <h2>Multimedia 7 (U)</h2></a>
+        </div>
+
+        <div id="div8" class="float">
+            <a href="side.html?m=8" target="_blank" title="Abrir Multimedia">
+			<img id="8" src="media/8.jpg" onerror="imageOnError(this)" />
+			<video style="display:none;"  id="vid8">
+				<source src="media/8.mp4" type="video/mp4">
+			</video>
+            <h2>Multimedia 8 (I)</h2></a>
+        </div>
+		
+        <div id="div9" class="float">
+            <a href="side.html?m=9" target="_blank" title="Abrir Multimedia">
+			<img id="9" src="media/9.jpg" onerror="imageOnError(this)" />
+			<video style="display:none;"  id="vid9">
+				<source src="media/9.mp4" type="video/mp4">
+			</video>
+            <h2>Multimedia 9 (O)</h2></a>
+        </div>
+		
+		<div id="div10" class="float">
+            <a href="side.html?m=10" target="_blank" title="Abrir Multimedia">
+			<img id="10" src="media/10.jpg" onerror="imageOnError(this)" />
+			<video style="display:none;"  id="vid10">
+				<source src="media/10.mp4" type="video/mp4">
+			</video>
+            <h2>Multimedia 10 (P)</h2></a>
+        </div>
+		
+		<div id="div11" class="float">
+            <a href="side.html?m=11" target="_blank" title="Abrir Multimedia">
+			<img id="11" src="media/11.jpg" onerror="imageOnError(this)" />
+			<video style="display:none;"  id="vid11">
+				<source src="media/11.mp4" type="video/mp4">
+			</video>
+            <h2>Multimedia 11 (A)</h2></a>
+        </div>
+
+		<div id="div12" class="float">
+            <a href="side.html?m=12" target="_blank" title="Abrir Multimedia">
+			<img id="12" src="media/12.jpg" onerror="imageOnError(this)" />
+			<video style="display:none;"  id="vid12">
+				<source src="media/12.mp4" type="video/mp4">
+			</video>
+            <h2>Multimedia 12 (S)</h2></a>
+        </div>
+
+		<div id="div13" class="float">
+            <a href="side.html?m=13" target="_blank" title="Abrir Multimedia">
+			<img id="13" src="media/13.jpg" onerror="imageOnError(this)" />
+			<video style="display:none;"  id="vid13">
+				<source src="media/13.mp4" type="video/mp4">
+			</video>
+            <h2>Multimedia 13 (D)</h2></a>
+        </div>
+
+		<div id="div14" class="float">
+            <a href="side.html?m=14" target="_blank" title="Abrir Multimedia">
+			<img id="14" src="media/14.jpg" onerror="imageOnError(this)" />
+			<video style="display:none;"  id="vid14">
+				<source src="media/14.mp4" type="video/mp4">
+			</video>
+            <h2>Multimedia 14 (F)</h2></a>
+        </div>
+
+		<div id="div15" class="float">
+            <a href="side.html?m=15" target="_blank" title="Abrir Multimedia">
+			<img id="15" src="media/15.jpg" onerror="imageOnError(this)" />
+			<video style="display:none;"  id="vid15">
+				<source src="media/15.mp4" type="video/mp4">
+			</video>
+            <h2>Multimedia 15 (G)</h2></a>
+        </div>
+
+		<div id="div16" class="float">
+            <a href="side.html?m=16" target="_blank" title="Abrir Multimedia">
+			<img id="16" src="media/16.jpg" onerror="imageOnError(this)" />
+			<video style="display:none;"  id="vid16">
+				<source src="media/16.mp4" type="video/mp4">
+			</video>
+            <h2>Multimedia 16 (H)</h2></a>
+        </div>
+
+		<div id="div17" class="float">
+            <a href="side.html?m=17" target="_blank" title="Abrir Multimedia">
+			<img id="17" src="media/17.jpg" onerror="imageOnError(this)" />
+			<video style="display:none;"  id="vid17">
+				<source src="media/17.mp4" type="video/mp4">
+			</video>
+            <h2>Multimedia 17 (J)</h2></a>
+        </div>
+
+		<div id="div18" class="float">
+            <a href="side.html?m=18" target="_blank" title="Abrir Multimedia">
+			<img id="18" src="media/18.jpg" onerror="imageOnError(this)" />
+			<video style="display:none;"  id="vid18">
+				<source src="media/18.mp4" type="video/mp4">
+			</video>
+            <h2>Multimedia 18 (K)</h2></a>
+        </div>
+
+		<div id="div19" class="float">
+            <a href="side.html?m=19" target="_blank" title="Abrir Multimedia">
+			<img id="19" src="media/19.jpg" onerror="imageOnError(this)" />
+			<video style="display:none;"  id="vid19">
+				<source src="media/19.mp4" type="video/mp4">
+			</video>
+            <h2>Multimedia 19 (L)</h2></a>
+        </div>
+
+		<div id="div20" class="float">
+            <a href="side.html?m=20" target="_blank" title="Abrir Multimedia">
+			<img id="20" src="media/20.jpg" onerror="imageOnError(this)" />
+			<video style="display:none;"  id="vid20">
+				<source src="media/20.mp4" type="video/mp4">
+			</video>
+            <h2>Multimedia 20 (Ñ)</h2></a>
+        </div>
+
+		<div id="div21" class="float">
+            <a href="side.html?m=21" target="_blank" title="Abrir Multimedia">
+			<img id="21" src="media/21.jpg" onerror="imageOnError(this)" />
+			<video style="display:none;"  id="vid21">
+				<source src="media/21.mp4" type="video/mp4">
+			</video>
+            <h2>Multimedia 21 (Z)</h2></a>
+        </div>		
+
+		<div id="div22" class="float">
+            <a href="side.html?m=22" target="_blank" title="Abrir Multimedia">
+			<img id="22" src="media/22.jpg" onerror="imageOnError(this)" />
+			<video style="display:none;"  id="vid22">
+				<source src="media/22.mp4" type="video/mp4">
+			</video>
+            <h2>Multimedia 22 (X)</h2></a>
+        </div>	
+		
+		<div id="div23" class="float">
+            <a href="side.html?m=23" target="_blank" title="Abrir Multimedia">
+			<img id="23" src="media/23.jpg" onerror="imageOnError(this)" />
+			<video style="display:none;"  id="vid23">
+				<source src="media/23.mp4" type="video/mp4">
+			</video>
+            <h2>Multimedia 23 (C)</h2></a>
+        </div>	
+
+		<div id="div24" class="float">
+            <a href="side.html?m=24" target="_blank" title="Abrir Multimedia">
+			<img id="24" src="media/24.jpg" onerror="imageOnError(this)" />
+			<video style="display:none;"  id="vid24">
+				<source src="media/24.mp4" type="video/mp4">
+			</video>
+            <h2>Multimedia 24 (V)</h2></a>
+        </div>	
+
+		<div id="div25" class="float">
+            <a href="side.html?m=25" target="_blank" title="Abrir Multimedia">
+			<img id="25" src="media/25.jpg" onerror="imageOnError(this)" />
+			<video style="display:none;"  id="vid25">
+				<source src="media/25.mp4" type="video/mp4">
+			</video>
+            <h2>Multimedia 25 (B)</h2></a>
+        </div>	
+		
+		<div id="div26" class="float">
+            <a href="side.html?m=26" target="_blank" title="Abrir Multimedia">
+			<img id="26" src="media/26.jpg" onerror="imageOnError(this)" />
+			<video style="display:none;"  id="vid26">
+				<source src="media/26.mp4" type="video/mp4">
+			</video>
+            <h2>Multimedia 26 (N)</h2></a>
+        </div>	
+		
+		<div id="div27" class="float">
+            <a href="side.html?m=27" target="_blank" title="Abrir Multimedia">
+			<img id="27" src="media/27.jpg" onerror="imageOnError(this)" />
+			<video style="display:none;"  id="vid27">
+				<source src="media/27.mp4" type="video/mp4">
+			</video>
+            <h2>Multimedia 27 (M)</h2></a>
+        </div>	
+		
+        <div class="float">
+
+            <h3 style="text-align:left;padding-left:5px;">
+                Presionando la letra se abre el archivo multimedia.<br />
+				ENTER: Play del video y pantalla completa<br />
+				ESC: Pausa el video o audio en reproducci&oacute;n
+
+            </h3>
+			<h2>
+                <a href="side.html?m=0"target="_blank" title="Abrir p&aacute;gina inicial video">Segunda pantalla</a>
+            </h2>
+        </div>
+		
+		  <div class="float reproductor">
+            <h2>Reproductor</h2>
+            <audio controls id="AudioControl" style="width:95%;">
+                <source src="MEDIA/AUDIO/9.mp3" type="audio/mpeg">
+            </audio>
+            <div class="helper">0 (cero) para el tema que esta reproduciendo | 9 (nueve) Reproduce la m&uacute;sica de sala</div>
+        </div>
+    </div>
+
+	<img id="nhe" src="IMG/nhe.png" />
+</body>
+</html>
